@@ -37,3 +37,13 @@ export const getProperty = async(id) => {
         throw error;
     } 
 }
+
+export const creteUser = async(email) => {
+    try{
+        await api.post('/user/register', {email})
+
+    }catch(error) {
+        toast.error('Something ent wrong, Pleas tray again')
+        throw error
+    }
+}

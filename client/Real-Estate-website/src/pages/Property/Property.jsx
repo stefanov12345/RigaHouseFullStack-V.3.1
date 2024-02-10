@@ -8,6 +8,7 @@ import "./Property.css";
 import { FaShower } from "react-icons/fa";
 
 import { MdLocationPin, MdMeetingRoom } from "react-icons/md";
+import Map from "../../components/Map/Map";
 
 const Property = () => {
   const { pathname } = useLocation();
@@ -96,50 +97,53 @@ const Property = () => {
               </span>
             </div>
 
-            {/* booking button
-            {bookings?.map((booking) => booking.id).includes(id) ? (
-              <>
-                <Button
-                  variant="outline"
-                  w={"100%"}
-                  color="red"
-                  onClick={() => cancelBooking()}
-                  disabled={cancelling}
+              {/* booking button
+              {bookings?.map((booking) => booking.id).includes(id) ? (
+                <>
+                  <Button
+                    variant="outline"
+                    w={"100%"}
+                    color="red"
+                    onClick={() => cancelBooking()}
+                    disabled={cancelling}
+                  >
+                    <span>Cancel booking</span>
+                  </Button>
+                  <span>
+                    Your visit already booked for date{" "}
+                    {bookings?.filter((booking) => booking?.id === id)[0].date}
+                  </span>
+                </>
+              ) : (
+                <button
+                  className="button"
+                  onClick={() => {
+                    validateLogin() && setModalOpened(true);
+                  }}
                 >
-                  <span>Cancel booking</span>
-                </Button>
-                <span>
-                  Your visit already booked for date{" "}
-                  {bookings?.filter((booking) => booking?.id === id)[0].date}
-                </span>
-              </>
-            ) : (
-              <button
-                className="button"
-                onClick={() => {
-                  validateLogin() && setModalOpened(true);
-                }}
-              >
+                  Book your visit
+                </button>
+              )}
+
+              <BookingModal
+                opened={modalOpened}
+                setOpened={setModalOpened}
+                propertyId={id}
+                email={user?.email}
+              /> */}
+              <button className="button">
                 Book your visit
               </button>
-            )}
+           </div>
 
-            <BookingModal
-              opened={modalOpened}
-              setOpened={setModalOpened}
-              propertyId={id}
-              email={user?.email}
-            /> */}
-          </div>
-
-          {/* right side */}
-          {/* <div className="map">
-            <Map
-              address={data?.address}
-              city={data?.city}
-              country={data?.country}
-            /> */}
-          {/* </div> */}
+           {/* right side */}
+           <div className="map">
+             <Map
+               address={data?.address}
+               city={data?.city}
+               country={data?.country}
+             /> 
+            </div> 
         </div>
       </div>
     </div>
