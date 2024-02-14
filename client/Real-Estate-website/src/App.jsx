@@ -11,7 +11,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Property from "./pages/Property/Property";
 import { MantineProvider } from "@mantine/core";
-import UserDetailContext from "./context/UserDetailConetxt";
+import UserDetailContext from "./context/UserDetailContext";
 
 function App() {
   const queryClient = new QueryClient();
@@ -19,32 +19,31 @@ function App() {
     favourites: [],
     bookings: [],
     token: null,
-  }); 
-  
+  });
+
   return (
     <UserDetailContext.Provider value={{ userDetails, setUserDetails }}>
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-      {/* <MantineProvider> */}
-        <Suspense fallback={<div>Loading...,</div>}>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path='/' element={<Website />} />
-              <Route path='/properties'>
-                <Route index element={<Properties />} />
-                <Route path=':propertyId' element={<Property />} />
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          {/* <MantineProvider> */}
+          <Suspense fallback={<div>Loading...,</div>}>
+            <Routes>
+              <Route element={<Layout />}>
+                <Route path='/' element={<Website />} />
+                <Route path='/properties'>
+                  <Route index element={<Properties />} />
+                  <Route path=':propertyId' element={<Property />} />
+                </Route>
               </Route>
-            </Route>
-          </Routes>
-        </Suspense>
-      {/* </MantineProvider> */}
-      </BrowserRouter>
-      <ToastContainer />
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+            </Routes>
+          </Suspense>
+          {/* </MantineProvider> */}
+        </BrowserRouter>
+        <ToastContainer />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
     </UserDetailContext.Provider>
   );
 }
 
 export default App;
-
