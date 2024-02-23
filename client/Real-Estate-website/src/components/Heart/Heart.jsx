@@ -35,10 +35,10 @@ const Heart = ({ id }) => {
   const handleLike = () => {
     if (validateLogin()) {
       mutate()
-      setHeartColor((prev) => (prev === "#fa3e5f" ? "white" : "#fa3ef5"));
+      setHeartColor((prev) => (prev === "#fa3e5f" ? "white" : "#ea6513"));
     }
   };
-  console.log('Heart.jsx 40',heartColor) 
+  // console.log('Heart.jsx 40',heartColor) 
 
 
   return (

@@ -113,3 +113,27 @@ export const toFav = async (id, email, token) => {
     throw e;
   }
 };
+
+export const getAllFav = async (email, token, id) => {
+  if(!token) return
+  try{
+   const res =  await api.post(
+      `/user/allFav`,
+      {
+        email,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+   );
+  console.log (`#############################res fuck u 131,${res}`)
+   return res.data["favResidenciesID"]
+
+  }catch(e)
+  {
+    toast.error("something went wrong while fetching favs")
+    throw e
+  }
+}
