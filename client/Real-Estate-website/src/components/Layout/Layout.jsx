@@ -7,9 +7,11 @@ import { useMutation } from "react-query";
 import { createUser } from "../../../../../server/controllers/userCntrl";
 import UserDetailContext from "../../context/UserDetailContext";
 import useFavourites from "../../hooks/useFavourites";
+import useBookings from "../../hooks/useBookings";
 
 const Layout = () => {
 useFavourites()
+useBookings ()
 
   const { isAuthenticated, user, getAccessTokenWithPopup } = useAuth0();
   const { setUserDetails } = useContext(UserDetailContext);
