@@ -1,5 +1,5 @@
 import { Container, Modal, Stepper } from "@mantine/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddLocation from "../Addlocation/AddLocation.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
 import UploadImage from "../UploadImage/UploadImages.jsx";
@@ -9,7 +9,9 @@ import BasicDetails from "../BasicDetails/BasicDetails.jsx";
 const AddPropertyModal = ({ opened, setOpened }) => {
   const [active, setActive] = useState(0);
   const { user } = useAuth0();
+
   const [propertyDetails, setPropertyDetails] = useState({
+    userEmail: "",
     title: "",
     description: "",
     price: 0,
@@ -22,8 +24,11 @@ const AddPropertyModal = ({ opened, setOpened }) => {
       parkings: 0,
       bathrooms: 0,
     },
-    userEmail: user?.email,
   });
+
+  useEffect(() => {
+    setPropertyDetails((prev) => ({ ...prev, userEmail: user?.email }));
+  }, []);
 
   const nextStep = () => {
     setActive((current) => (current < 4 ? current + 1 : current));
@@ -52,26 +57,29 @@ const AddPropertyModal = ({ opened, setOpened }) => {
               propertyDetails={propertyDetails}
               setPropertyDetails={setPropertyDetails}
             />
+            <div></div>
           </Stepper.Step>
-          <Stepper.Step label="Images" description="Upload ">
+          <Stepper.Step label='Images' description='Upload '>
             <UploadImage
               prevStep={prevStep}
               nextStep={nextStep}
               propertyDetails={propertyDetails}
               setPropertyDetails={setPropertyDetails}
             />
+            <div></div>
           </Stepper.Step>
-          <Stepper.Step label="Basics" description="Details">
+          <Stepper.Step label='Basics' description='Details'>
             <BasicDetails
               prevStep={prevStep}
               nextStep={nextStep}
               propertyDetails={propertyDetails}
               setPropertyDetails={setPropertyDetails}
             />
+            <div></div>
           </Stepper.Step>
 
-        <Stepper.Step>
-            <Facilities 
+          <Stepper.Step>
+            <Facilities
               prevStep={prevStep}
               propertyDetails={propertyDetails}
               setPropertyDetails={setPropertyDetails}
@@ -79,8 +87,10 @@ const AddPropertyModal = ({ opened, setOpened }) => {
               setActiveStep={setActive}
             />
           </Stepper.Step>
+          <div></div>
           <Stepper.Completed>
             Completed, click back button to get to previous step
+            <div></div>
           </Stepper.Completed>
         </Stepper>
       </Container>

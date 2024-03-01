@@ -11,12 +11,11 @@ export const createResidency = asyncHandler(async (req, res) => {
     country,
     city,
     facilities,
-    images,
+    image,
     userEmail,
   } = req.body.data;
 
-  console.log(req.body.data);
-
+  console.log(`req.body.data: ${req.body.data}`);
   try {
     const residency = await prisma.residency.create({
       data: {
@@ -27,44 +26,40 @@ export const createResidency = asyncHandler(async (req, res) => {
         country,
         city,
         facilities,
-        images,
+        image,
         owner: { connect: { email: userEmail } },
       },
     });
 
-    res.send({ messege: "residency created succesfully" });
+    res.send({ message: "Residency created successfully", residency });
   } catch (err) {
     if (err.code === "P2002") {
-      throw new Error("A residency with addrees already there ");
+      throw new Error("A residency with address already there");
     }
-    console.log(`############ ${err.message}` )
     throw new Error(err.message);
   }
 });
 
-// funcion para tener todas lso documentos de residencias.
-
- export const getAllResidencies = asyncHandler( async( req, res) => {
+// function to get all the documents/residencies
+export const getAllResidencies = asyncHandler(async (req, res) => {
   const residencies = await prisma.residency.findMany({
-    orderBy:{
-      createdAt:"desc",
+    orderBy: {
+      createdAt: "desc",
     },
   });
   res.send(residencies);
 });
 
-// funcion para tener documentos especificos/residency
-export const getResidency= asyncHandler(async(req, res)=>{
-  const {id} = req.params;
-  try{
- const resdincy  = await prisma.residency.findUnique({
-  where:{id}
+// function to get a specific document/residency
+export const getResidency = asyncHandler(async (req, res) => {
+  const { id } = req.params;
 
- });
- res.send(resdincy);
-  }catch(err){
+  try {
+    const residency = await prisma.residency.findUnique({
+      where: { id },
+    });
+    res.send(residency);
+  } catch (err) {
     throw new Error(err.message);
-
- }
-
-})
+  }
+});

@@ -3,32 +3,23 @@ import asyncHandler from "express-async-handler";
 import { prisma } from "../config/prismaConfig.js";
 
 export const createUser = asyncHandler(async (req, res) => {
-  console.log("### ### ### creating a user ### ### ### ");
+  console.log("creating a user");
 
   let { email } = req.body;
-  const userExist = await prisma.user.findUnique({ where: { email: email } });
-  console.log(userExist);
-  if (!userExist) {
+  const userExists = await prisma.user.findUnique({ where: { email: email } });
+  if (!userExists) {
     const user = await prisma.user.create({ data: req.body });
     res.send({
-      mesagge: "user registred sucessfully",
+      message: "User registered successfully",
       user: user,
     });
-  } else {
-    res.send(201).json({
-      message: " user already register",
-    });
-  }
+  } else res.status(201).send({ message: "User already registered" });
 });
 
+// function to book a visit to resd
 export const bookVisit = asyncHandler(async (req, res) => {
   const { email, date } = req.body;
   const { id } = req.params;
-
-  console.log(`################## [bookVisit]`);
-  console.log(email);
-  console.log(date);
-  console.log(`################## [bookVisit]`);
 
   try {
     const alreadyBooked = await prisma.user.findUnique({
@@ -42,19 +33,19 @@ export const bookVisit = asyncHandler(async (req, res) => {
         .json({ message: "This residency is already booked by you" });
     } else {
       await prisma.user.update({
-        where: { email },
+        where: { email: email },
         data: {
           bookedVisits: { push: { id, date } },
         },
       });
+      res.send("your visit is booked successfully");
     }
-    res.send("your visit os book succesfully");
   } catch (err) {
     throw new Error(err.message);
   }
 });
 
-// funcion para optener todos los booking de los usuarios
+// funtion to get all bookings of a user
 export const getAllBookings = asyncHandler(async (req, res) => {
   const { email } = req.body;
   try {
@@ -68,8 +59,7 @@ export const getAllBookings = asyncHandler(async (req, res) => {
   }
 });
 
-// funcion para cancelar booking
-
+// function to cancel the booking
 export const cancelBooking = asyncHandler(async (req, res) => {
   const { email } = req.body;
   const { id } = req.params;
@@ -78,7 +68,9 @@ export const cancelBooking = asyncHandler(async (req, res) => {
       where: { email: email },
       select: { bookedVisits: true },
     });
+
     const index = user.bookedVisits.findIndex((visit) => visit.id === id);
+
     if (index === -1) {
       res.status(404).json({ message: "Booking not found" });
     } else {
@@ -89,6 +81,7 @@ export const cancelBooking = asyncHandler(async (req, res) => {
           bookedVisits: user.bookedVisits,
         },
       });
+
       res.send("Booking cancelled successfully");
     }
   } catch (err) {
@@ -96,14 +89,16 @@ export const cancelBooking = asyncHandler(async (req, res) => {
   }
 });
 
-// function to add a resd in favourite of user
+// function to add a resd in favourite list of a user
 export const toFav = asyncHandler(async (req, res) => {
   const { email } = req.body;
   const { rid } = req.params;
+
   try {
     const user = await prisma.user.findUnique({
       where: { email },
     });
+
     if (user.favResidenciesID.includes(rid)) {
       const updateUser = await prisma.user.update({
         where: { email },
@@ -113,6 +108,7 @@ export const toFav = asyncHandler(async (req, res) => {
           },
         },
       });
+
       res.send({ message: "Removed from favorites", user: updateUser });
     } else {
       const updateUser = await prisma.user.update({
@@ -123,28 +119,23 @@ export const toFav = asyncHandler(async (req, res) => {
           },
         },
       });
-      res.send({ message: "updated favorites", user: updateUser });
+      res.send({ message: "Updated favorites", user: updateUser });
     }
   } catch (err) {
     throw new Error(err.message);
   }
 });
 
-// function to get all favorites 
-
-//importante !!! favResindeciesID esto es importatntisimo ya que el scham esta escrito asi 
-// y en el videoe s diferernte por  en el tuyo.. corregir al final del proyecto.
- 
-export const getAllfavorites = asyncHandler(async(req, res) => {
-  const{email }= req.body;
+// function to get all favorites
+export const getAllFavorites = asyncHandler(async (req, res) => {
+  const { email } = req.body;
   try {
     const favResd = await prisma.user.findUnique({
-      where:{email},
-      select:{ favResidenciesID:true}
+      where: { email },
+      select: { favResidenciesID: true },
     });
-    res.status(200).send(favResd)
-  }catch(err){
+    res.status(200).send(favResd);
+  } catch (err) {
     throw new Error(err.message);
   }
- 
 });

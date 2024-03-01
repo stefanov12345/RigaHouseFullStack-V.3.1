@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import "./UploadImage.css";
 import { Button, Group } from "@mantine/core";
+
 const UploadImage = ({
   propertyDetails,
   setPropertyDetails,
@@ -19,11 +20,11 @@ const UploadImage = ({
     cloudinaryRef.current = window.cloudinary;
     widgetRef.current = cloudinaryRef.current.createUploadWidget(
       {
-            cloudName:"dvcu2rcpy",
+        cloudName:"dvcu2rcpy",
             uploadPreset:"ljft8ngl",
             maxFiles: 1,
-        },
-    (err, result) => {
+      },
+      (err, result) => {
         if (result.event === "success") {
           setImageURL(result.info.secure_url);
         }
@@ -53,6 +54,9 @@ const UploadImage = ({
         <Button variant="default" onClick={prevStep}>
           Back
         </Button>
+        <div>imageURL: {JSON.stringify(imageURL)}</div>
+        <div>propertyDetails: {JSON.stringify(propertyDetails)}</div>
+        
         <Button onClick={handleNext} disabled={!imageURL}>
           Next
         </Button>
