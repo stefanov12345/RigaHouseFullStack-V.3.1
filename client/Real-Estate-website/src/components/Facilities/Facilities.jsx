@@ -104,7 +104,7 @@ const Facilities = ({
         />
         <Group position="center" mt="xl">
           <Button variant="default" onClick={prevStep}>
-            Back
+            Atras
           </Button>
           <Button type="submit" color="green" disabled={isLoading}>
             {isLoading ? "Submitting" : "Add Property"}

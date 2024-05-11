@@ -49,7 +49,7 @@ const BookingModal = ({ opened, setOpened, email, propertyId }) => {
       <div className="flexColCenter" style={{gap: "1rem"}}>
         <DatePicker value={value} onChange={setValue} minDate={new Date()} />
         <Button disabled={!value || isLoading} onClick={() => mutate()}>
-          Book visit
+        Reservar visita
         </Button>
       </div>
     </Modal>

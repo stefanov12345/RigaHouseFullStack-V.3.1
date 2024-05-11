@@ -89,7 +89,7 @@ const AddPropertyModal = ({ opened, setOpened }) => {
           </Stepper.Step>
           <div></div>
           <Stepper.Completed>
-            Completed, click back button to get to previous step
+          Completado, haz clic en el botón de retroceso para volver al paso anterior.
             <div></div>
           </Stepper.Completed>
         </Stepper>

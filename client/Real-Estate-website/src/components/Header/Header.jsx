@@ -46,10 +46,10 @@ const Header = () => {
             <a href='#get-started'>Get Started</a>
             <button className='button'> */}
 
-            <NavLink to='/properties'>Properties</NavLink>
-            <a href='mailto:stefano_vannucci@hotmail.com'>Contact</a>
+            <NavLink to='/properties'>Propiedades</NavLink>
+            <a href='mailto:stefano_vannucci@hotmail.com'>Contactos</a>
             {/* add property */}
-            <div onClick={handleAddPropertyClick}>Add property </div>
+            <div onClick={handleAddPropertyClick}>Agregar propiedades </div>
 
             <AddPropertyModal opened={modalOpened} setOpened={setModalOpened} />
             {/* login burron */}

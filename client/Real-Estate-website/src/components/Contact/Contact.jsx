@@ -9,11 +9,11 @@ const Contact = () => {
       <div className="paddings innerWidth flexCenter c-container">
         {/* left side */}
         <div className="flexColStart c-left">
-          <span className="orangeText">Our Contact Us</span>
-          <span className="primaryText">Easy to contact us</span>
+          <span className="orangeText">Nuestro Contactos</span>
+          <span className="primaryText">Fácil de contactarnos</span>
           <span className="secondaryText">
-            We always ready to help by providijng the best services for you. We
-            beleive a good blace to live can make your life better{" "}
+          Siempre estamos listos para ayudarte proporcionando los mejores servicios para ti. 
+          Creemos que un buen lugar para vivir puede hacer tu vida mejor.{" "}
           </span>
 
           <div className="flexColStart contactModes">
@@ -25,11 +25,11 @@ const Contact = () => {
                     <MdCall size={25} />
                   </div>
                   <div className="flexColStart detail">
-                    <span className="primaryText">Call</span>
+                    <span className="primaryText">Llamar</span>
                     <span className="secondaryText">021 123 145 14</span>
                   </div>
                 </div>
-                <div className="flexCenter button">Call now</div>
+                <div className="flexCenter button">Llame ahora</div>
               </div>
 
               <div className="flexColCenter mode">
@@ -38,11 +38,11 @@ const Contact = () => {
                     <BsFillChatDotsFill size={25} />
                   </div>
                   <div className="flexColStart detail">
-                    <span className="primaryText">Chat</span>
+                    <span className="primaryText">Chatear</span>
                     <span className="secondaryText">021 123 145 14</span>
                   </div>
                 </div>
-                <div className="flexCenter button">Chat now</div>
+                <div className="flexCenter button">Chatea Ahora</div>
               </div>
             </div>
 
@@ -54,11 +54,11 @@ const Contact = () => {
                     <BsFillChatDotsFill size={25} />
                   </div>
                   <div className="flexColStart detail">
-                    <span className="primaryText">Video Call</span>
+                    <span className="primaryText">Video Llamada</span>
                     <span className="secondaryText">021 123 145 14</span>
                   </div>
                 </div>
-                <div className="flexCenter button">Video Call now</div>
+                <div className="flexCenter button">Llamada de video ahora</div>
               </div>
 
               <div className="flexColCenter mode">
@@ -67,11 +67,11 @@ const Contact = () => {
                     <HiChatBubbleBottomCenter size={25} />
                   </div>
                   <div className="flexColStart detail">
-                    <span className="primaryText">Message</span>
+                    <span className="primaryText">Mensaje</span>
                     <span className="secondaryText">021 123 145 14</span>
                   </div>
                 </div>
-                <div className="flexCenter button">Message now</div>
+                <div className="flexCenter button">Enviar mensaje ahora</div>
               </div>
             </div>
           </div>

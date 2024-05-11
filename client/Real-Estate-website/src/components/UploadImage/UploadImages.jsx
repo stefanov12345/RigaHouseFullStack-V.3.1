@@ -39,7 +39,7 @@ const UploadImage = ({
           onClick={() => widgetRef.current?.open()}
         >
           <AiOutlineCloudUpload size={50} color="grey" />
-          <span>Upload Image</span>
+          <span>Subir Imagen</span>
         </div>
       ) : (
         <div
@@ -52,13 +52,12 @@ const UploadImage = ({
 
       <Group position="center" mt={"xl"}>
         <Button variant="default" onClick={prevStep}>
-          Back
+          Atras
         </Button>
-        <div>imageURL: {JSON.stringify(imageURL)}</div>
-        <div>propertyDetails: {JSON.stringify(propertyDetails)}</div>
+        
         
         <Button onClick={handleNext} disabled={!imageURL}>
-          Next
+          Siguiente
         </Button>
       </Group>
     </div>

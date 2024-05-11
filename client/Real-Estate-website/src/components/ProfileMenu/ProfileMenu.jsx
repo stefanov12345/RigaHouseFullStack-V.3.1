@@ -10,7 +10,7 @@ const ProfileMenu = ({user, logout}) => {
         </Menu.Target>
         <Menu.Dropdown>
             <Menu.Item onClick={()=> navigate("./favourites", {replace: true})}>
-                Favourites
+                Favoritos
             </Menu.Item>
 
             <Menu.Item onClick={()=> navigate("./bookings", {replace: true})}>

@@ -55,10 +55,10 @@ const BasicDetails = ({ prevStep, nextStep, propertyDetails, setPropertyDetails 
         />
         <Group position="center" mt="xl">
           <Button variant="default" onClick={prevStep}>
-            Back
+            Siguiente
           </Button>
           <Button type="submit">
-            Next step
+            Atras
           </Button>
         </Group>
       </form>
